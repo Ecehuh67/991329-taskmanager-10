@@ -1,11 +1,11 @@
-import{createMenuTemplate} from './components/menu.js';
-import{createControlTemplate} from './components/control.js';
-import{createBoardContainerTemplate} from './components/board.js';
-import{createFilterTemplate} from './components/filter.js';
-import{createTaskTemplate} from './components/task.js';
-import{createEditFormTemplate} from './components/task-edit.js';
-import{createLoadButtonTemplate} from './components/load-button.js';
-import{createListOfTasksTemplate} from './components/task-list.js';
+import {createMenuTemplate} from './components/menu.js';
+import {createControlTemplate} from './components/control.js';
+import {createBoardContainerTemplate} from './components/board.js';
+import {createFilterTemplate} from './components/filter.js';
+import {createTaskTemplate} from './components/task.js';
+import {createEditFormTemplate} from './components/task-edit.js';
+import {createLoadButtonTemplate} from './components/load-button.js';
+import {createListOfTasksTemplate} from './components/task-list.js';
 
 const TASK_COUNT = 3; // amount of card which needs rendering
 
