@@ -6,6 +6,7 @@ import {createTaskTemplate} from './components/task.js';
 import {createEditFormTemplate} from './components/task-edit.js';
 import {createLoadButtonTemplate} from './components/load-button.js';
 import {createListOfTasksTemplate} from './components/task-list.js';
+import {generateTask, generateTasks} from './mocks/task.js';
 
 const TASK_COUNT = 3; // amount of card which needs rendering
 
