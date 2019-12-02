@@ -1,58 +1,26 @@
-const controlsNames = [`all`, `overdue`, `today`, `fovorites`, `repeating`, `tags`, `archive`];
+const createFilterMarkup = (filter, isChecked) => {
+  const {name, count} = filter;
 
-const generateControls = (tasks) => {
-
-  const currentDate = new Date();
-  let index = 0;
-
-  return controlsNames.map((it) => {
-    switch (it) {
-      case `all`:
-        index = tasks.length;
-        break;
-      case `overdue`:
-        index = tasks.filter((task) => {
-          return (task.dueDate ? task.dueDate.getDate() : `null`) < currentDate.getDate();
-        }).length;
-        break;
-      case `today`:
-        index = tasks.filter(
-            (task) => {
-              return (task.dueDate ? task.dueDate.getDate() : `null`) === currentDate.getDate();
-            }).length;
-        break;
-      case `favorites`:
-        index = tasks.filter(
-            (task) => {
-              return task.isFavorite;
-            }).length;
-        break;
-      case `archive`:
-        index = tasks.filter(
-            (task) => {
-              return task.isArchive;
-            }).length;
-        break;
-      case `repeating`:
-        index = tasks.filter(
-            (task) => {
-              return Object.values(task.repeatingDays).some(Boolean);
-            }).length;
-        break;
-      case `tags`:
-        index = tasks.filter(
-            (task) => {
-              return Array.from(task.tags).length > 0;
-            }).length;
-    }
-
-    return {
-      title: it,
-      count: index
-    };
-  });
+  return (
+    `<input
+      type="radio"
+      id="filter__${name}"
+      class="filter__input visually-hidden"
+      name="filter"
+      ${isChecked ? `checked` : ``}
+    />
+    <label for="filter__${name}" class="filter__label">
+      ${name} <span class="filter__all-count">${count}</span>
+    </label>`
+  );
 };
 
-export {
-  generateControls
+export const createControlTemplate = (filters) => {
+  const filtersMarkup = filters.map((it, i) => createFilterMarkup(it, i === 0)).join(`\n`);
+
+  return (
+    `<section class="main__filter filter container">
+      ${filtersMarkup}
+    </section>`
+  );
 };
