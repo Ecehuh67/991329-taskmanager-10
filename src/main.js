@@ -1,14 +1,18 @@
 import {createMenuTemplate} from './components/menu.js';
-import {createControlTemplate} from './components/control.js';
-import {createBoardContainerTemplate} from './components/board.js';
 import {createFilterTemplate} from './components/filter.js';
-import {createTaskTemplate} from './components/task.js';
-import {createEditFormTemplate} from './components/task-edit.js';
-import {createLoadButtonTemplate} from './components/load-button.js';
-import {createListOfTasksTemplate} from './components/task-list.js';
-import {generateTask, generateTasks} from './mocks/task.js';
+import {generateFilters} from './mocks/filter.js';
+import {generateTasks} from './mocks/task.js';
+import {createSortTemplate} from './components/sort.js';
+import {createBoardContainerTemplate} from './components/board.js';
 
-const TASK_COUNT = 3; // amount of card which needs rendering
+
+
+// import {createTaskTemplate} from './components/task.js';
+// import {createTaskEditTemplate} from './components/task-edit.js';
+// import {createLoadButtonTemplate} from './components/load-button.js';
+// import {createListOfTasksTemplate} from './components/task-list.js';
+
+const TASK_COUNT = 20; // amount of card which needs rendering
 
 const render = (container, template, place) => {
   container.insertAdjacentHTML(place, template);
@@ -18,22 +22,30 @@ const mainElement = document.querySelector(`.main`);
 const mainControlElement = mainElement.querySelector(`.main__control`);
 
 render(mainControlElement, createMenuTemplate(), `beforeend`);
-render(mainElement, createControlTemplate(), `beforeend`);
+
+const tasks = generateTasks(TASK_COUNT);
+const filters = generateFilters(tasks);
+render(mainElement, createFilterTemplate(filters), `beforeend`);
+
 render(mainElement, createBoardContainerTemplate(), `beforeend`);
-
 const boardContainerElement = mainElement.querySelector(`.board, container`);
-render(boardContainerElement, createFilterTemplate(), `beforeend`);
-render(boardContainerElement, createListOfTasksTemplate(), `beforeend`);
+render(boardContainerElement, createSortTemplate(), `beforeend`);
 
-const boardTasksElement = boardContainerElement.querySelector(`.board__tasks`);
-render(boardTasksElement, createEditFormTemplate(), `beforeend`);
 
-new Array(TASK_COUNT)
-  .fill(``)
-  .forEach(
-      () => {
-        render(boardTasksElement, createTaskTemplate(), `beforeend`);
-      }
-  );
 
-render(boardContainerElement, createLoadButtonTemplate(), `beforeend`);
+
+// render(boardContainerElement, createFilterTemplate(), `beforeend`);
+// render(boardContainerElement, createListOfTasksTemplate(), `beforeend`);
+//
+// const boardTasksElement = boardContainerElement.querySelector(`.board__tasks`);
+// render(boardTasksElement, createEditFormTemplate(), `beforeend`);
+//
+// new Array(TASK_COUNT)
+//   .fill(``)
+//   .forEach(
+//       () => {
+//         render(boardTasksElement, createTaskTemplate(), `beforeend`);
+//       }
+//   );
+//
+// render(boardContainerElement, createLoadButtonTemplate(), `beforeend`);

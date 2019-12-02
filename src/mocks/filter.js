@@ -1,6 +1,6 @@
 const controlsNames = [`all`, `overdue`, `today`, `fovorites`, `repeating`, `tags`, `archive`];
 
-const generateControls = (tasks) => {
+export const generateFilters = (tasks) => {
 
   const currentDate = new Date();
   let index = 0;
@@ -51,8 +51,4 @@ const generateControls = (tasks) => {
       count: index
     };
   });
-};
-
-export {
-  generateControls
 };
