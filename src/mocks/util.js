@@ -3,7 +3,7 @@ const castTimeFormat = (value) => {
 };
 
 export const formatTime = (date) => {
-  const hours = castTimeFormat(date.getHours % 12);
+  const hours = castTimeFormat(date.getHours() % 12);
   const minutes = castTimeFormat(date.getMinutes());
   const interval = date.getHours() > 11 ? `pm` : `am`;
 
