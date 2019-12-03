@@ -1,7 +1,26 @@
-export const createFilterTemplate = () => {
-  return `<div class="board__filter-list">
-    <a href="#" class="board__filter">SORT BY DEFAULT</a>
-    <a href="#" class="board__filter">SORT BY DATE up</a>
-    <a href="#" class="board__filter">SORT BY DATE down</a>
-  </div>`;
+const createFilterMarkup = (filter, isChecked) => {
+  const {title, count} = filter;
+
+  return (
+    `<input
+      type="radio"
+      id="filter__${title}"
+      class="filter__input visually-hidden"
+      name="filter"
+      ${isChecked ? `checked` : ``}
+    />
+    <label for="filter__${title}" class="filter__label">
+      ${title} <span class="filter__all-count">${count}</span>
+    </label>`
+  );
+};
+
+export const createFilterTemplate = (filters) => {
+  const filtersMarkup = filters.map((it, i) => createFilterMarkup(it, i === 0)).join(`\n`);
+
+  return (
+    `<section class="main__filter filter container">
+      ${filtersMarkup}
+    </section>`
+  );
 };
