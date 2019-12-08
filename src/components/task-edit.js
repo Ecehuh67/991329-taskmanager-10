@@ -1,5 +1,5 @@
-import {Colors, Days, MonthNames} from '../mocks/const.js';
-import {formatTime} from '../mocks/util.js';
+import {Colors, Days, MonthNames} from '../mocks/consts.js';
+import {formatTime, createElement} from '../mocks/utils.js';
 
 const createColorsMarkup = (colors, currentColor) => {
   return colors.map((color) => {
@@ -156,3 +156,26 @@ export const createTaskEditTemplate = (task) => {
       </article>`
   );
 };
+
+export default class TaskEdit {
+  constructor(task) {
+    this._task = task;
+    this._element = null;
+  }
+
+  getTemplate() {
+    return createTaskEditTemplate(this._task);
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+
+    return this._element;
+  }
+
+  removeElement() {
+    this._element = null;
+  }
+}
