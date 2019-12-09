@@ -1,23 +1,21 @@
 import {createElement} from '../mocks/utils.js';
 
-const createSortTemplate = () => {
+const createNoTasksTemplate = () => {
   return (
-    `<div class="board__filter-list">
-      <a href="#" class="board__filter">SORT BY DEFAULT</a>
-      <a href="#" class="board__filter">SORT BY DATE up</a>
-      <a href="#" class="board__filter">SORT BY DATE down</a>
-    </div>`
+    `<p class="board__no-tasks">
+      Click «ADD NEW TASK» in menu to create your first task
+    </p>`
   );
 };
 
 
-export default class Sort {
+export default class NoTasks {
   constructor() {
     this._element = null;
   }
 
   getTemplate() {
-    return createSortTemplate();
+    return createNoTasksTemplate();
   }
 
   getElement() {
