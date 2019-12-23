@@ -14,7 +14,6 @@ const mainControlElement = mainElement.querySelector(`.main__control`);
 render(mainControlElement, new SiteMenuComponent(), RenderPosition.BEFOREEND);
 
 const tasks = generateTasks(TASK_COUNT);
-console.log(tasks);
 const filters = generateFilters(tasks);
 render(mainElement, new FilterComponent(filters), RenderPosition.BEFOREEND);
 
